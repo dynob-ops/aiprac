@@ -1,0 +1,58 @@
+Q1) Write the program to implement the AO* Algorithm 
+graph = {
+    'A': [['B'], ['C']],
+    'B': [['D', 'E']],
+    'C': [['F'], ['G']],
+    'D': [['H'], ['I']],
+    'E': [['J']],
+    'F': [],
+    'G': [],
+    'H': [],
+    'I': [],
+    'J': []
+}
+
+cost = {
+    'A': [2, 3],
+    'B': [1, 4],
+    'C': [2, 5],
+    'D': [2, 3],
+    'E': [1]
+}
+
+def ao_star(node):
+    if not graph[node]:
+        return 0
+
+    values = []
+    for i, children in enumerate(graph[node]):
+        total = cost[node][i]
+        for child in children:
+            total += ao_star(child)
+        values.append(total)
+
+    return min(values)
+
+print("Minimum cost:", ao_star('A'))
+
+
+
+Q2) Write a program to implement the Minimax Algorithm for a two-player 
+game.
+
+def minimax(node, is_max):
+    if node not in graph:
+        return node
+
+    if is_max:
+        return max(minimax(n, False) for n in graph[node])
+    else:
+        return min(minimax(n, True) for n in graph[node])
+
+graph = {
+    'A': ['B', 'C'],
+    'B': [3, 5],
+    'C': [2, 9]
+}
+
+print("Best value:", minimax('A', True))
