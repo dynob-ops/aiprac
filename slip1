@@ -1,0 +1,81 @@
+Q1) Write a program to implement Breadth First Search (BFS) for the 
+Monkey Banana Problem
+
+from collections import deque
+start="monkey at room"
+goal="monkey gets banana"
+
+queue=deque([start])
+visited=[]
+
+while queue :
+    state=queue.popleft()
+
+    if state not in visited:
+        print(state)
+        visited.append(state)
+
+        if(state==goal):
+            print("goal reached")
+            break
+
+        if state=="monkey at room" :
+            queue.append("monkey at box")
+
+        elif state=="monkey at box" :
+            queue.append("push box to banana")
+
+        elif state == "push box to banana" :
+            queue.append("climb box") 
+
+        elif state=="climb box":
+            queue.append("monkey gets banana")
+Q2) Write a program to solve the Map Coloring Problem using the Constraint 
+Satisfaction Problem (CSP) approach
+
+map = {
+    'A': ['B', 'C'],
+    'B': ['A', 'C', 'D'],
+    'C': ['A', 'B', 'D'],
+    'D': ['B', 'C']
+}
+
+colors = ['Red', 'Green', 'Blue']
+
+color = {}
+
+def safe(region, c):
+    for neighbour in map[region]:
+        if neighbour in color and color[neighbour] == c:
+            return False
+    return True
+
+def solve(regions):
+   
+    if len(regions) == 0:
+        return True
+
+    region = regions[0]
+   
+    for c in colors:
+
+        if safe(region, c):
+            color[region] = c
+            
+            if solve(regions[1:]):
+                return True
+            
+            del color[region]
+
+    return False
+
+regions = ['A', 'B', 'C', 'D']
+
+if solve(regions):
+    print("Map Coloring Solution")
+
+    for region in regions:
+        print(region, "->", color[region])
+
+else:
+    print("No solution")
