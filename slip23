@@ -1,0 +1,48 @@
+Q1) Write a program to demonstrate the Hill Climbing Algorithm for finding 
+the maximum value of a simple objective function. (F(x) = -x^2 + 4x) 
+
+def objective(x):
+    return -x**2+4*x
+
+def hill_climbing(start): 
+    curr=start
+    
+    while True:
+        n1=curr+1
+        n2=curr-1
+        
+        if objective(n1)>objective(curr):
+            curr=n1
+        elif objective(n2)>objective(curr):
+            curr=n2
+        else:
+            break
+        
+    return curr,objective(curr)
+x,value=hill_climbing(0)
+print("max value of x=",x)
+print("max obj value",value)
+
+Q2) Write a program to solve the Map Colouring Problem using the 
+Constraint Satisfaction Problem (CSP) approach. 
+
+colors = ['red', 'green', 'blue']
+
+graph = {
+    'A': ['B', 'C', 'E'],
+    'B': ['A', 'C', 'D', 'E'],
+    'C': ['A', 'B', 'E', 'F'],
+    'D': ['B', 'E'],
+    'E': ['A', 'B', 'C', 'D', 'F'],
+    'F': ['C', 'E']
+}
+
+color = {}
+
+for region in graph:
+    for c in colors:
+        if all(color.get(n) != c for n in graph[region]):
+            color[region] = c
+            break
+
+print(color)
