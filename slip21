@@ -1,0 +1,48 @@
+Q1) Write a program implement Iterative Deepening Search (IDS).
+
+tree = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+def ids(node, depth):
+    print(node, end=" ")
+
+    if depth == 0:
+        return
+
+    for child in tree[node]:
+        ids(child, depth - 1)
+
+for depth in range(3):
+    print("\nDepth", depth, ":", end=" ")
+    ids('A', depth)
+
+
+  Q2) Write a program to solve the Map Colouring Problem using the 
+Constraint Satisfaction Problem (CSP) approach.
+
+colors=['red','green','blue','pink']
+
+graph={
+    'A':['B','C','E'],
+    'B':['A','C','E','D'],
+    'C':['A','B','E','F'],
+    'D':['B','E'],
+    'E':['D','B','A','C','F'],
+    'F':['C','E']
+}
+
+color={}
+
+for region in graph:
+    for c in colors:
+        if all(color.get(n)!=c for n in graph[region]):
+            color[region]=c
+            break
+
+print("->",color)
