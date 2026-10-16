@@ -1,0 +1,54 @@
+Q1)Write a program to implement BFS traversal for a graph.
+
+
+from collections import deque
+
+graph = {
+    1: [2, 3],
+    2: [4, 5],
+    3: [6, 7],
+    4: [8, 9],
+    5: [10, 11],
+    6: [12, 13],
+    7: [14, 15],
+    8: [],
+    9: [],
+    10: [],
+    11: [],
+    12: [],
+    13: [],
+    14: [],
+    15: []
+}
+
+def bfs(start):
+    visited =[]
+    queue = deque([start])
+    
+    while queue:
+        node = queue.popleft()
+        
+        if node not in visited:
+            print(node,end="  ")
+            
+        visited.append(node)
+        
+        for neighbour in graph[node]:
+            if neighbour not in visited:
+                queue.append(neighbour)
+bfs(1)
+
+Q2) Write a program to implement Propositional Logic and evaluate logical 
+expressions using operators such as AND, OR, and NOT
+
+p=1
+q=0
+
+print("P is equals to=",p)
+print("Q is equals to=",q)
+
+
+print("P and Q is equals to=",p and q)
+print("P OR Q is equals to=",p or q)
+print("Not P is equals to=",not p)
+print("Not Q is equals to=",not q)
