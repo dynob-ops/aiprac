@@ -1,0 +1,49 @@
+Q1) Write a program to implement BFS traversal for a graph. 
+
+from collections import deque
+graph={
+    'v1' : ['v2','v3','v5'],
+    'v2' : ['v1','v4'],
+    'v3' : ['v1','v6'],
+    'v4' : ['v2','v5'],
+    'v5' : ['v1','v4','v6'],
+    'v6' : ['v3','v5'],
+                     
+}
+
+def bfs(start):
+    visited=[]
+    queue = deque([start])
+    
+    while queue:
+        node=queue.popleft()
+        
+        if node not in visited:
+            print(node,end=" ")
+            visited.append(node)
+        
+            for neighbour in graph[node]:
+                if neighbour not in visited:
+                    queue.append(neighbour)
+                    
+bfs('v1')
+
+
+Q2) Write a program or report to compare Supervised Learning and 
+Unsupervised Learning techniques.
+
+from sklearn.cluster import KMeans
+from sklearn.linear_model import LogisticRegression
+
+X=[[2,40],[3,45],[8,85],[9,90]]
+Y=[0,0,1,1]
+
+super_m=LogisticRegression()
+super_m.fit(X,Y)
+
+print("supervise model=",super_m.predict([[7,90]]))
+
+unsup_m=KMeans(n_clusters=2,random_state=0)
+unsup_m.fit(X)
+
+print("unsupervise cluster",unsup_m.labels_)
